@@ -7,7 +7,9 @@
 //
 
 #import "NSURL+Parameters.h"
+
 #import "NSString+URLEncode.h"
+#import "NSString+URLParameters.h"
 
 
 @implementation NSURL (Parameters)
@@ -18,18 +20,7 @@
 {
     NSString *resultUrl = [[NSString alloc] initWithString:url];
     
-    NSArray *parameterNames = [parameters allKeys];
-    
-    if ([parameterNames count] > 0) {
-        resultUrl = [resultUrl stringByAppendingString:@"?"];
-        for (NSString *parameterName in [parameters allKeys]) {
-            resultUrl = [resultUrl stringByAppendingString:[NSString stringWithFormat:@"%@=%@&",
-                                                            parameterName,
-                                                            parameters[parameterName]]];
-        }
-        resultUrl = [resultUrl stringByReplacingCharactersInRange:NSMakeRange([resultUrl length] - 1, 1)
-                                                       withString:@""];
-    }
+    resultUrl = [resultUrl stringByAppendingString:[@"?" stringByAppendingString:[NSString parametersStringFromDictionary:parameters]]];
     
     return [[NSURL alloc] initWithString:[resultUrl urlEncodeUsingEncoding:encoding]];
 }
