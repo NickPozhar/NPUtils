@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 
 
+/**
+ * Category on NSURL to provide routine to build URLs with parameters.
+ */
 @interface NSURL (Parameters)
 
 + (NSURL *)urlWithUrlString:(NSString *)url

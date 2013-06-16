@@ -9,8 +9,14 @@
 #import <Foundation/Foundation.h>
 
 
+/**
+ * Category on NSString to provide urlencoded strings.
+ */
 @interface NSString (URLEncode)
 
+/**
+ * Encode "+" symbol in string.
+ */
 -(NSString *)urlEncodeUsingEncoding:(NSStringEncoding)encoding;
 
 @end
